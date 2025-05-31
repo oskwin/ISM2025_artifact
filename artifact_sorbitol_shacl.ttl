@@ -1,0 +1,51 @@
+@prefix ex: <http://www.github.com/oskwin/dcp/sorbitol/> .
+@prefix lis: <http://rds.posccaesar.org/ontology/lis14/rdl/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdl: <http://rds.posccaesar.org/ontology/plm/rdl/> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix chebi: <http://purl.obolibrary.org/obo/> .
+
+ex:SorbitolShape
+    a sh:NodeShape ;
+    sh:targetClass ex:Sorbitol ;
+
+    # Density Constraint (PCA_100003631)
+    sh:property [
+        sh:path lis:hasQualityQuantifiedAs ;
+        sh:qualifiedValueShape [
+            sh:class rdl:PCA_100003631 ;  # ✅ Density Datum
+		sh:property [
+                sh:path lis:datumValue ;
+                sh:datatype xsd:decimal ;
+                sh:minInclusive 1.9 ;  # ✅ Minimum density value
+                sh:maxInclusive 2.5 ;  # ✅ Maximum density value
+            ] ;
+        ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:qualifiedMaxCount 1 ;
+        sh:message "Density Datum (PCA_100003631) must exist between 1.9 and 2.7." ;
+    ] ;
+
+    # Viscosity Constraint (PCA_100003948)
+    sh:property [
+        sh:path lis:hasQualityQuantifiedAs ;
+        sh:qualifiedValueShape [
+            sh:class rdl:PCA_100003948 ;  # ✅ Viscosity Datum
+		sh:property [
+                sh:path lis:datumValue ;
+                sh:datatype xsd:decimal ;
+                sh:minInclusive 3.2 ;  # ✅ Minimum viscosity value
+                sh:maxInclusive 3.7 ;  # ✅ Maximum viscosity value
+            ] ;
+        ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:qualifiedMaxCount 1 ;
+        sh:message "Viscosity Datum (PCA_100003948) must exist between 3.2 and 3.7." ;
+    ] .
+
+
+	

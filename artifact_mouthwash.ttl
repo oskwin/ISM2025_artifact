@@ -1,0 +1,253 @@
+@prefix : <http://www.github.com/oskwin/dcp/sorbitol/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.github.com/oskwin/dcp/sorbitol/> .
+
+<http://www.github.com/oskwin/dcp/sorbitol/> rdf:type owl:Ontology ;
+                                              owl:imports <http://rds.posccaesar.org/ontology/lis14/ont/core/3.0> ;
+                                              <http://purl.org/dc/terms/contributor> "Oskar Wintercorn" ;
+                                              <https://spec.industrialontologies.org/ontology/core/meta/AnnotationVocabulary/maturity> "Experimental" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/contributor
+<http://purl.org/dc/terms/contributor> rdf:type owl:AnnotationProperty .
+
+
+###  https://spec.industrialontologies.org/ontology/core/meta/AnnotationVocabulary/maturity
+<https://spec.industrialontologies.org/ontology/core/meta/AnnotationVocabulary/maturity> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://rds.posccaesar.org/ontology/lis14/rdl/hasPart
+<http://rds.posccaesar.org/ontology/lis14/rdl/hasPart> rdf:type owl:ObjectProperty .
+
+
+###  http://rds.posccaesar.org/ontology/lis14/rdl/hasQualityQuantifiedAs
+<http://rds.posccaesar.org/ontology/lis14/rdl/hasQualityQuantifiedAs> rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://rds.posccaesar.org/ontology/lis14/rdl/datumValue
+<http://rds.posccaesar.org/ontology/lis14/rdl/datumValue> rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.obolibrary.org/obo/CHEBI_15377
+<http://purl.obolibrary.org/obo/CHEBI_15377> rdf:type owl:Class .
+
+
+###  http://purl.obolibrary.org/obo/CHEBI_16236
+<http://purl.obolibrary.org/obo/CHEBI_16236> rdf:type owl:Class .
+
+
+###  http://purl.obolibrary.org/obo/CHEBI_30911
+<http://purl.obolibrary.org/obo/CHEBI_30911> rdf:type owl:Class .
+
+
+###  http://rds.posccaesar.org/ontology/plm/rdl/PCA_100003631
+<http://rds.posccaesar.org/ontology/plm/rdl/PCA_100003631> rdf:type owl:Class .
+
+
+###  http://rds.posccaesar.org/ontology/plm/rdl/PCA_100003948
+<http://rds.posccaesar.org/ontology/plm/rdl/PCA_100003948> rdf:type owl:Class .
+
+
+###  http://rds.posccaesar.org/ontology/plm/rdl/PCA_100004939
+<http://rds.posccaesar.org/ontology/plm/rdl/PCA_100004939> rdf:type owl:Class .
+
+
+###  http://www.github.com/oskwin/dcp/sorbitol/Ethanol
+:Ethanol rdf:type owl:Class ;
+         rdfs:subClassOf <http://purl.obolibrary.org/obo/CHEBI_16236> ,
+                         :LiquidChemical .
+
+
+###  http://www.github.com/oskwin/dcp/sorbitol/Ethanol_Requirment_1
+:Ethanol_Requirment_1 rdf:type owl:Class .
+
+
+###  http://www.github.com/oskwin/dcp/sorbitol/LiquidChemical
+:LiquidChemical rdf:type owl:Class ;
+                rdfs:subClassOf <http://rds.posccaesar.org/ontology/plm/rdl/PCA_100004939> .
+
+
+###  http://www.github.com/oskwin/dcp/sorbitol/Mouthwash_Template
+:Mouthwash_Template rdf:type owl:Class ;
+                    rdfs:subClassOf :LiquidChemical ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty <http://rds.posccaesar.org/ontology/lis14/rdl/hasPart> ;
+                                      owl:someValuesFrom :Ethanol
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty <http://rds.posccaesar.org/ontology/lis14/rdl/hasPart> ;
+                                      owl:someValuesFrom :Sorbitol_Template
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty <http://rds.posccaesar.org/ontology/lis14/rdl/hasPart> ;
+                                      owl:someValuesFrom :Water
+                                    ] ;
+                    rdfs:comment "A template for a mouthwash" .
+
+
+###  http://www.github.com/oskwin/dcp/sorbitol/Mouthwash_type_1
+:Mouthwash_type_1 rdf:type owl:Class ;
+                  rdfs:subClassOf :Mouthwash_Template ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty <http://rds.posccaesar.org/ontology/lis14/rdl/hasPart> ;
+                                    owl:someValuesFrom :Ethanol_Requirment_1
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty <http://rds.posccaesar.org/ontology/lis14/rdl/hasPart> ;
+                                    owl:someValuesFrom :Sorbitol
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty <http://rds.posccaesar.org/ontology/lis14/rdl/hasPart> ;
+                                    owl:someValuesFrom :Water_Requirment_1
+                                  ] ;
+                  rdfs:comment "A type of mouthwash with requirements on the sourced components" .
+
+
+###  http://www.github.com/oskwin/dcp/sorbitol/Requirement
+:Requirement rdf:type owl:Class .
+
+
+###  http://www.github.com/oskwin/dcp/sorbitol/Sorbitol
+:Sorbitol rdf:type owl:Class ;
+          rdfs:subClassOf :Sorbitol_Template .
+
+
+###  http://www.github.com/oskwin/dcp/sorbitol/Sorbitol_RequiredDensity
+:Sorbitol_RequiredDensity rdf:type owl:Class ;
+                          owl:equivalentClass [ owl:intersectionOf ( <http://purl.obolibrary.org/obo/CHEBI_30911>
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <http://rds.posccaesar.org/ontology/lis14/rdl/hasQualityQuantifiedAs> ;
+                                                                       owl:someValuesFrom [ owl:intersectionOf ( <http://rds.posccaesar.org/ontology/plm/rdl/PCA_100003631>
+                                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                                   owl:onProperty <http://rds.posccaesar.org/ontology/lis14/rdl/datumValue> ;
+                                                                                                                   owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                       owl:onDatatype xsd:decimal ;
+                                                                                                                                       owl:withRestrictions ( [ xsd:minInclusive 1.9
+                                                                                                                                                              ]
+                                                                                                                                                              [ xsd:maxInclusive 2.7
+                                                                                                                                                              ]
+                                                                                                                                                            )
+                                                                                                                                     ]
+                                                                                                                 ]
+                                                                                                               ) ;
+                                                                                            rdf:type owl:Class
+                                                                                          ]
+                                                                     ]
+                                                                   ) ;
+                                                rdf:type owl:Class
+                                              ] ;
+                          rdfs:subClassOf :Sorbitol_Requirement .
+
+
+###  http://www.github.com/oskwin/dcp/sorbitol/Sorbitol_RequiredViscosity
+:Sorbitol_RequiredViscosity rdf:type owl:Class ;
+                            owl:equivalentClass [ owl:intersectionOf ( <http://purl.obolibrary.org/obo/CHEBI_30911>
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <http://rds.posccaesar.org/ontology/lis14/rdl/hasQualityQuantifiedAs> ;
+                                                                         owl:someValuesFrom [ owl:intersectionOf ( <http://rds.posccaesar.org/ontology/plm/rdl/PCA_100003948>
+                                                                                                                   [ rdf:type owl:Restriction ;
+                                                                                                                     owl:onProperty <http://rds.posccaesar.org/ontology/lis14/rdl/datumValue> ;
+                                                                                                                     owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                         owl:onDatatype xsd:decimal ;
+                                                                                                                                         owl:withRestrictions ( [ xsd:minInclusive 3.2
+                                                                                                                                                                ]
+                                                                                                                                                                [ xsd:maxInclusive 3.7
+                                                                                                                                                                ]
+                                                                                                                                                              )
+                                                                                                                                       ]
+                                                                                                                   ]
+                                                                                                                 ) ;
+                                                                                              rdf:type owl:Class
+                                                                                            ]
+                                                                       ]
+                                                                     ) ;
+                                                  rdf:type owl:Class
+                                                ] ;
+                            rdfs:subClassOf :Sorbitol_Requirement .
+
+
+###  http://www.github.com/oskwin/dcp/sorbitol/Sorbitol_Requirement
+:Sorbitol_Requirement rdf:type owl:Class ;
+                      rdfs:subClassOf :Requirement .
+
+
+###  http://www.github.com/oskwin/dcp/sorbitol/Sorbitol_Template
+:Sorbitol_Template rdf:type owl:Class ;
+                   rdfs:subClassOf <http://purl.obolibrary.org/obo/CHEBI_30911> ,
+                                   :LiquidChemical .
+
+
+###  http://www.github.com/oskwin/dcp/sorbitol/Water
+:Water rdf:type owl:Class ;
+       rdfs:subClassOf <http://purl.obolibrary.org/obo/CHEBI_15377> ,
+                       :LiquidChemical .
+
+
+###  http://www.github.com/oskwin/dcp/sorbitol/Water_Requirment_1
+:Water_Requirment_1 rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.github.com/oskwin/dcp/sorbitol/Batch001
+:Batch001 rdf:type owl:NamedIndividual ,
+                   :Sorbitol .
+
+
+###  http://www.github.com/oskwin/dcp/sorbitol/Batch001_ActualViscosity
+:Batch001_ActualViscosity rdf:type owl:NamedIndividual .
+
+
+###  http://www.github.com/oskwin/dcp/sorbitol/Batch135
+:Batch135 rdf:type owl:NamedIndividual ,
+                   <http://purl.obolibrary.org/obo/CHEBI_30911> ;
+          <http://rds.posccaesar.org/ontology/lis14/rdl/hasQualityQuantifiedAs> :Batch135_ActualDensity ,
+                                                                                :Batch135_ActualViscosity .
+
+
+###  http://www.github.com/oskwin/dcp/sorbitol/Batch135_ActualDensity
+:Batch135_ActualDensity rdf:type owl:NamedIndividual ,
+                                 <http://rds.posccaesar.org/ontology/plm/rdl/PCA_100003631> ;
+                        <http://rds.posccaesar.org/ontology/lis14/rdl/datumValue> 1.9 .
+
+
+###  http://www.github.com/oskwin/dcp/sorbitol/Batch135_ActualViscosity
+:Batch135_ActualViscosity rdf:type owl:NamedIndividual ,
+                                   <http://rds.posccaesar.org/ontology/plm/rdl/PCA_100003948> ;
+                          <http://rds.posccaesar.org/ontology/lis14/rdl/datumValue> 3.5 .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ owl:intersectionOf ( :Sorbitol_RequiredDensity
+                       :Sorbitol_RequiredViscosity
+                     ) ;
+  rdf:type owl:Class ;
+  rdfs:subClassOf :Sorbitol
+] .
+
+
+###  Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi
